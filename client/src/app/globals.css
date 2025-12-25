@@ -46,7 +46,7 @@
   --radius-4xl: calc(var(--radius) + 16px);
 
   /* custom font */
-    --font-inter: "Inter", "Inter Fallback";
+  --font-inter: "Inter", "Inter Fallback";
 }
 
 :root {
@@ -122,24 +122,23 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
-};
+}
+
+;
 
 
 @theme {
-  --color-primary : #11221a;
+  --color-primary: #13ec80;
+  --color-background-light: #f6f8f7;
+  --color-background-dark: #102219;
+  --color-surface-dark: #162e22;
+   /* #11221a; */
+  --color-surface-highlight: #234836;
+  --color-text-secondary: #92c9ad;
+
+  --color-border-dark : #234836;
 }
-
-
-
-
-
-
-/* "primary": "#13ec80",
-                        "background-light": "#f6f8f7",
-                        "background-dark": "#102219", // Matches the deep green theme
-                        "surface-dark": "#11221a",
-                        "surface-highlight": "#234836",
-                        "text-secondary": "#92c9ad", */

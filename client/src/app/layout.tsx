@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
 
 
 const inter = Inter({
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased bg-primary`}
+        className={`${inter.variable} antialiased bg-background-light dark:bg-background-dark`}
       >
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem >
         {children}
+        </ThemeProvider>
       </body>
     </html>
   );
