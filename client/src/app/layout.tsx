@@ -3,13 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
-
 const inter = Inter({
-  variable : "--font-inter",
-  weight : ['400', '500','600','700','800'],
-  subsets : ['latin']
-})
-
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,10 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased bg-background-light dark:bg-background-dark`}
+        className={`${inter.variable} font-inter bg-background-light dark:bg-background-dark antialiased`}
       >
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -51,7 +51,9 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #f6f8f7;
+  /* yellow; */
+  /* oklch(1 0 0); */
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -85,8 +87,10 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --background: #102219; /* red; */ /* oklch(0.145 0 0); */
+  --foreground: #f6f8f7;
+  /* #ffffff; */
+  /* oklch(0.985 0 0); */
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -128,17 +132,51 @@
   }
 }
 
-;
-
-
 @theme {
-  --color-primary: #13ec80;
+  --color-primary: #102219;
+  /* #13ec80; */
   --color-background-light: #f6f8f7;
   --color-background-dark: #102219;
   --color-surface-dark: #162e22;
-   /* #11221a; */
+  /* #11221a; */
   --color-surface-highlight: #234836;
   --color-text-secondary: #92c9ad;
 
-  --color-border-dark : #234836;
+  --color-border-dark: #234836;
+  --color-green-light: #13ec80 /* #13ec80 */;
+}
+
+/* Additional utility classes to support our components */
+@layer components {
+  .custom-text-heading {
+    @apply text-2xl font-medium text-[#333333] md:text-2xl xl:text-3xl;
+  }
+
+  .custom-text-sub-heading {
+    @apply text-xl font-medium text-[#333333] md:text-[22px] xl:text-[26px];
+  }
+
+  .custom-text-body-2xl {
+    @apply text-lg font-normal text-[#333333] md:text-xl xl:text-2xl;
+  }
+
+  .custom-text-body-xl {
+    @apply text-primary text-base font-normal md:text-lg xl:text-xl;
+  }
+
+  .custom-text-body-lg {
+    @apply text-sm font-normal text-[#333333] md:text-base xl:text-lg;
+  }
+
+  .custom-text-body-base {
+    @apply text-primary text-sm font-normal md:text-sm xl:text-base;
+  }
+
+  .custom-text-body-sm {
+    @apply text-xs font-normal text-[#333333] md:text-xs xl:text-sm;
+  }
+
+  .custom-text-body-small {
+    @apply text-[10px] font-normal text-[#333333] md:text-[12px];
+  }
 }
