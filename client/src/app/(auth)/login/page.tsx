@@ -1,3 +1,10 @@
+"use client";
+
+import * as React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
@@ -10,7 +17,34 @@ export const customInputClasses =
 export const customLabelClasses =
   "pb-2 text-sm leading-normal font-medium text-gray-900 dark:text-white";
 
-const page = () => {
+const Login = () => {
+  const schema = z
+    .object({
+      fullName: z.string().min(1, { message: "Full name is required" }),
+      email: z
+        .string()
+        .email({ message: "Enter valid email" })
+        .min(1, { message: "Email is required" }),
+      password: z
+        .string()
+        .min(6, { message: "Password must be at least 6 characters" }),
+      confirmPassword: z
+        .string()
+        .min(6, { message: "Password must be at least 6 characters" }),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: "Password don't match",
+      path: ["confirmPassword"],
+    });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
   return (
     <div className="font-display flex min-h-screen items-center justify-center">
       {/* <!-- Main Container Card --> */}
@@ -107,17 +141,29 @@ const page = () => {
               <div className="dark:border-border-dark flex-grow border-t border-gray-200"></div>
             </div> */}
             {/* <!-- Full Name -->*/}
-            <form className="flex flex-col gap-5">
+            <form
+              onSubmit={handleSubmit((data) => {
+                // handle inputs
+                console.log(data);
+              })}
+              className="flex flex-col gap-5"
+            >
               <div>
-                <Label htmlFor="fullname" className={customLabelClasses}>
+                <Label htmlFor="fullName" className={customLabelClasses}>
                   Full Name
                 </Label>
                 <Input
-                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
+                  {...register("fullName")}
+                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
                   placeholder="Enter your full name"
                   type="text"
-                  id="fullname"
+                  id="fullName"
                 />
+                {errors.fullName?.message && (
+                  <p className="mt-1 pl-2 text-sm font-medium text-rose-600">
+                    {errors.fullName?.message}
+                  </p>
+                )}
               </div>
 
               {/* Email */}
@@ -126,11 +172,17 @@ const page = () => {
                   Email
                 </Label>
                 <Input
-                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
+                  {...register("email")}
+                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
                   placeholder="Enter your email"
                   type="email"
                   id="email"
                 />
+                {errors.email?.message && (
+                  <p className="mt-1 pl-2 text-sm font-medium text-rose-600">
+                    {errors.email?.message}
+                  </p>
+                )}
               </div>
 
               {/* Password */}
@@ -139,11 +191,17 @@ const page = () => {
                   Password
                 </Label>
                 <Input
-                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
+                  {...register("password")}
+                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
                   placeholder="Create a password"
                   type="text"
                   id="password"
                 />
+                {errors.password?.message && (
+                  <p className="mt-1 pl-2 text-sm font-medium text-rose-600">
+                    {errors.password?.message}
+                  </p>
+                )}
               </div>
 
               {/* <!-- Confirm Password --> */}
@@ -155,17 +213,23 @@ const page = () => {
                   Confirm Password
                 </Label>
                 <Input
-                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
+                  {...register("confirmPassword")}
+                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
                   placeholder="Confirm your password"
                   type="text"
                   id="confirm-passwor"
                 />
+                {errors.confirmPassword?.message && (
+                  <p className="mt-1 pl-2 text-sm font-medium text-rose-600">
+                    {errors.confirmPassword?.message}
+                  </p>
+                )}
               </div>
 
               {/* <!-- Submit Button --> */}
               <button
                 className="bg-green-light mt-4 flex h-12 w-full transform cursor-pointer items-center justify-center rounded-lg px-4 text-base leading-normal font-bold tracking-[0.015em] text-[#11221a] shadow-[0_0_20px_rgba(19,236,128,0.2)] transition-all hover:bg-[#0fd672] hover:shadow-[0_0_25px_rgba(19,236,128,0.4)] active:scale-[0.99]"
-                type="button"
+                type="submit"
               >
                 Create Account
               </button>
@@ -189,4 +253,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Login;
