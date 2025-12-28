@@ -143,7 +143,8 @@
   --color-text-secondary: #92c9ad;
 
   --color-border-dark: #234836;
-  --color-green-light: #13ec80 /* #13ec80 */;
+  --color-green-light: #13ec80; /* #13ec80 */
+  --color-card-dark: #162a20;
 }
 
 /* Additional utility classes to support our components */
