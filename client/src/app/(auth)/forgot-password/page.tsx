@@ -27,8 +27,8 @@ const ForgotPassword = () => {
   const schema = z.object({
     email: z
       .string()
-      .email({ message: "Enter valid email" })
-      .min(1, { message: "Email is required" }),
+      .min(1, { message: "Email is required" })
+      .email({ message: "Enter valid email" }),
   });
 
   const {
@@ -54,7 +54,7 @@ const ForgotPassword = () => {
       </header>
 
       {/* <--- Main content ---> */}
-      <main className="flex flex-1 items-center justify-center overflow-hidden p-4">
+      <main className="flex flex-1 items-center justify-center overflow-hidden p-4 pt-24">
         <Card className="dark:bg-card-dark dark:border-border-dark relative mx-auto w-full max-w-md gap-0 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-2xl">
           <div className="bg-background-dark dark:bg-green-light absolute top-0 h-1.5 w-full" />
           <CardHeader className="space-y-2">
@@ -87,7 +87,7 @@ const ForgotPassword = () => {
                 </Label>
                 <Input
                   {...register("email")}
-                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary focus-visible:ring-green-light w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px]"
+                  className="focus-within:ring-green-light focus-within:border-green-light dark:border-border-dark dark:placeholder:text-text-secondary dark:text-text-secondary w-full min-w-0 flex-1 rounded-l-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus-within:ring-0 focus:border-transparent focus:ring-0 focus:ring-[#0661FF] focus:outline-none focus-visible:border-none focus-visible:ring-[1.5px] focus-visible:ring-[#13ec80]"
                   placeholder="Enter your email"
                   type="email"
                   id="email"
