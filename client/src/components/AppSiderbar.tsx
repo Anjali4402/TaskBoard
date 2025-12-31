@@ -78,7 +78,7 @@ const AppSidebar = () => {
       // variant="floating"
       variant="sidebar"
       collapsible="icon"
-      className="[&>div]:bg-background"
+      className="[&>div]:bg-[#102219]"
     >
       <SidebarHeader className="spy-[13px]">
         <SidebarMenu>

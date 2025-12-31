@@ -20,7 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <SidebarProvider open={showSidebar} onOpenChange={setShowSidebar}>
       <AppSidebar />
       <div className="flex flex-1 flex-col">
-        <header className="bg-cards sticky top-0 z-50 border-b">
+        <header className="sticky top-0 z-50 border-b bg-[#102219]">
           <div className="max-w-7xls mx-auto flex items-center justify-between gap-6 px-4 py-2 sm:px-6">
             <div>
               <FiSidebar
