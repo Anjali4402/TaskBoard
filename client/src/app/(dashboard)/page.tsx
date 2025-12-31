@@ -21,8 +21,8 @@ const Home = () => {
           </p>
         </div>
         <div className="text-text-secondary flex items-center gap-2 rounded-lg border border-[#234836] bg-[#1a2c24] px-3 py-1.5 text-sm">
-          <Calendar className="text-primary text-[18px]" />
-          <span>Oct 24, 2023</span>
+          <Calendar className="text-text-secondary size-4" />
+          <h1>Oct 24, 2023</h1>
         </div>
       </div>
 
