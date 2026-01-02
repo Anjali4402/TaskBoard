@@ -23,6 +23,9 @@ import { IoMdCalendar } from "react-icons/io";
 import { FaRegListAlt } from "react-icons/fa";
 import { RiTimelineView } from "react-icons/ri";
 import { CgNotes } from "react-icons/cg";
+import { Plus } from "lucide-react";
+import { useState } from "react";
+import { AddTask } from "./AddTask";
 
 // Menu items.
 const menuItems = [
@@ -68,6 +71,11 @@ const AppSidebar = () => {
 
   const pathname = usePathname();
 
+  const [openAddTaskModal, setOpenAddTaskModal] = useState(false);
+
+  const handleCloseTaskModal = () => {
+    setOpenAddTaskModal(false);
+  };
   return (
     // variant === floating => rounded boarder and a little space
     // inset everything normal didn't show the side bar lines
@@ -144,12 +152,23 @@ const AppSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <Button className="flex items-center gap-3 rounded-lg bg-white/10 px-3 py-2.5 text-gray-400 transition-colors hover:bg-white/5 hover:text-white">
+        <Button
+          onClick={() => {
+            setOpenAddTaskModal(true);
+          }}
+          className="bg-green-light text-background-dark flex h-10 items-center justify-center gap-2 rounded-lg px-5 text-sm font-bold shadow-[0_0_15px_rgba(19,236,128,0.25)] transition-all hover:bg-[#0fd673] hover:shadow-[0_0_20px_rgba(19,236,128,0.4)]"
+        >
+          <Plus className="size-5 text-black" />
+          {open && <span>New Task</span>}
+        </Button>
+        {/* <Button className="flex items-center gap-3 rounded-lg bg-white/10 px-3 py-2.5 text-gray-400 transition-colors hover:bg-white/5 hover:text-white">
           <MdLogout />
 
           {open && "Logout"}
-        </Button>
+        </Button> */}
       </SidebarFooter>
+
+      <AddTask open={openAddTaskModal} handleClose={handleCloseTaskModal} />
     </Sidebar>
   );
 };

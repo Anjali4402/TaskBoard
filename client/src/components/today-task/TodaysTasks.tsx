@@ -5,6 +5,30 @@ import { FaRegCalendar } from "react-icons/fa6";
 import { FaRegCalendarXmark } from "react-icons/fa6";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 
+const taskData = [
+  {
+    title: "Financial Report",
+    description: "Review draft with finance team",
+    status: "inProgress",
+    tag: "finance",
+  },
+  {
+    title: "Financial Report",
+    description: "Review draft with finance team",
+    status: "urgent",
+  },
+  {
+    title: "Financial Report",
+    description: "Review draft with finance team",
+    status: "completed",
+  },
+  {
+    title: "Financial Report",
+    description: "Review draft with finance team",
+    status: "todo",
+  },
+];
+
 const TodaysTasks = () => {
   return (
     <div className="flex flex-col gap-6">

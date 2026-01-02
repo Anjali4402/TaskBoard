@@ -20,6 +20,10 @@
 # production
 /build
 
+
+# dummy files
+/ignore
+
 # misc
 .DS_Store
 *.pem
