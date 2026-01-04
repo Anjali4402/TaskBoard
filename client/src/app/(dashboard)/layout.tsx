@@ -6,6 +6,9 @@ import { useState } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { FiSidebar } from "react-icons/fi";
 import { useTheme } from "next-themes";
+import ProfileDropdown from "@/components/shared/ProfileDropdown";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -33,14 +36,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {theme === "dark" ? "Dark" : "Light"}
               </div>
 
-              <div className="relative flex items-center gap-1.5">
-                <div
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-slate-200 text-xs font-bold text-slate-600`}
-                >
-                  AN
-                  {/* {user?.firstName.substring(0, 1)} */}
-                </div>
-              </div>
+              <ProfileDropdown
+                trigger={
+                  <Button variant="ghost" size="icon" className="size-9.5">
+                    <Avatar className="size-9.5 rounded-md">
+                      <AvatarImage
+                        src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png"
+                        // src={user?.image}
+                        alt="John Doe"
+                      />
+                      <AvatarFallback className="uppercase">JD</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                }
+              />
             </div>
           </div>
         </header>
