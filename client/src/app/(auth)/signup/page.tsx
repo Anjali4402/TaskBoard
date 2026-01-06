@@ -45,6 +45,25 @@ const Signup = () => {
     resolver: zodResolver(schema),
   });
 
+  const handleSignup = async (data) => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const url = `${baseUrl}/api/auth/signup`;
+
+    const { fullName, email, password } = data;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName, email, password }),
+      });
+
+      const resdata = await response.json();
+    } catch (error) {
+      console.error("Something went wrong");
+    }
+  };
+
   return (
     <div className="font-display flex min-h-screen items-center justify-center">
       {/* <!-- Main Container Card --> */}
@@ -144,7 +163,7 @@ const Signup = () => {
             <form
               onSubmit={handleSubmit((data) => {
                 // handle inputs
-                console.log(data);
+                handleSignup(data);
               })}
               className="flex flex-col gap-5"
             >
