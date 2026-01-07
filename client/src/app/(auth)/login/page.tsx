@@ -36,6 +36,23 @@ const Login = () => {
     resolver: zodResolver(schema),
   });
 
+  const handleLogin = async (data) => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const url = `${baseUrl}/api/auth/login`;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const resdata = await response.json();
+    } catch (error) {
+      console.error("Something went wrong");
+    }
+  };
+
   return (
     <div className="font-display flex min-h-screen items-center justify-center">
       {/* <!-- Main Container Card --> */}
@@ -84,8 +101,8 @@ const Login = () => {
             {/* <!-- Full Name -->*/}
             <form
               onSubmit={handleSubmit((data) => {
-                // handle inputs
-                console.log(data);
+                // submit login
+                handleLogin(data);
               })}
               className="flex flex-col gap-5"
             >
